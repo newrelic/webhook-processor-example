@@ -5,7 +5,7 @@ This project is a simple utility to help integrating New Relic alerting webhooks
 behind firewalls. It depends on [IronMQ](http://www.iron.io), an excellent SaaS message queue service, and
 [Loggly](https://www.loggly.com), a SaaS log management service.
 
-New Relic webhooks are routed through to this processor via IronMQ's (ability to accept webhooks)[http://blog.iron.io/2013/01/queue-webhook-events-with-ironmq.html].
+New Relic webhooks are routed through to this processor via IronMQ's [ability to accept webhooks](http://blog.iron.io/2013/01/queue-webhook-events-with-ironmq.html).
 From there, the processor pulls the webhook off the queue and passes it in as the `event` object while executing some
 custom JavaScript code. The JavaScript environment has access to various utilities, such as an HTTP library, which
 makes it easy to transform the webhook payload and pass it on to any 3rd party system.
