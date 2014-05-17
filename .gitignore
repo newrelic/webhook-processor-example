@@ -1,0 +1,11 @@
+target
+*.iml
+*.iws
+*.ipr
+/.classpath
+/.settings
+/.project
+/.idea
+atlassian-ide-plugin.xml
+/agent.properties
+/script.js
