@@ -1,0 +1,180 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:btypes="http://blueprint.bmc.com/BasicTypes" xmlns:event="http://blueprint.bmc.com/Event" xmlns:tns="http://blueprint.bmc.com/ImapiTypes" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://blueprint.bmc.com/ImapiTypes">
+  <import namespace="http://blueprint.bmc.com/BasicTypes" schemaLocation="BasicTypes.xml" /> 
+  <import namespace="http://blueprint.bmc.com/Event" schemaLocation="Event.xml" /> 
+  <element name="SMComponent_element" type="tns:SMComponent" /> 
+  <complexType name="SMComponent">
+  <complexContent>
+  <extension base="btypes:ArrayOf_NameValue" /> 
+  </complexContent>
+  </complexType>
+  <element name="SMComponentArray_element" type="tns:ArrayOf_SMComponent" /> 
+  <complexType name="ArrayOf_SMComponent">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="SMComponent_element" type="tns:SMComponent" /> 
+  </sequence>
+  </complexType>
+  <simpleType name="IMBufferType">
+  <restriction base="xsd:string">
+  <enumeration value="BMCII_BUFFER_MODE_DEFAULT" /> 
+  <enumeration value="BMCII_BUFFER_MODE_NONE" /> 
+  <enumeration value="BMCII_BUFFER_MODE_LOW" /> 
+  <enumeration value="BMCII_BUFFER_MODE_HIGH" /> 
+  </restriction>
+  </simpleType>
+  <simpleType name="QueryMode">
+  <restriction base="xsd:string">
+  <enumeration value="BMCII_EVENT_CLASSES" /> 
+  <enumeration value="BMCII_DATA_CLASSES" /> 
+  </restriction>
+  </simpleType>
+  <element name="QueryMode_element" type="tns:QueryMode" /> 
+  <complexType name="StateChangeType">
+  <sequence>
+  <element name="bCompChange" type="xsd:boolean" /> 
+  <element name="bCompDelete" type="xsd:boolean" /> 
+  <element name="bRelChange" type="xsd:boolean" /> 
+  <element name="bRelDelete" type="xsd:boolean" /> 
+  <element name="bAll" type="xsd:boolean" /> 
+  </sequence>
+  </complexType>
+  <element name="StateChangeType_element" type="tns:StateChangeType" /> 
+  <complexType name="GetEventsResponse">
+  <sequence>
+  <element name="response" type="event:ArrayOf_Event" /> 
+  <element name="num_of_events" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  <complexType name="RetrieveQueryResultResponse">
+  <sequence>
+  <element name="response" type="btypes:TableOf_NameValue" /> 
+  <element name="num_of_results" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  <complexType name="SlotDefInfo">
+  <sequence>
+  <element name="slot_name" type="xsd:string" /> 
+  <element name="slot_type" type="xsd:string" /> 
+  <element name="slot_rep_type" type="xsd:string" /> 
+  <element name="slot_flags" type="xsd:string" /> 
+  <element name="slot_def_val" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <element name="SlotDefInfo_element" type="tns:SlotDefInfo" /> 
+  <complexType name="ArrayOf_SlotDefInfo">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="items" type="tns:SlotDefInfo" /> 
+  </sequence>
+  </complexType>
+  <element name="SlotDefInfo_Array" type="tns:ArrayOf_SlotDefInfo" /> 
+  <complexType name="ClassDefInfo">
+  <sequence>
+  <element name="class_parent_idx" type="xsd:int" /> 
+  <element name="class_child_cnt" type="xsd:int" /> 
+  <element name="class_name" type="xsd:string" /> 
+  <element name="child_idx" type="btypes:ArrayOf_Int" /> 
+  <element name="slots_count" type="xsd:int" /> 
+  <element name="slots_list" type="tns:ArrayOf_SlotDefInfo" /> 
+  </sequence>
+  </complexType>
+  <element name="ClassDefInfo_element" type="tns:ClassDefInfo" /> 
+  <complexType name="ArrayOf_ClassDefInfo">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="items" type="tns:ClassDefInfo" /> 
+  </sequence>
+  </complexType>
+  <element name="ClassDefInfo_Array" type="tns:ArrayOf_ClassDefInfo" /> 
+  <complexType name="CStatus">
+  <sequence>
+  <element name="cmpStatus" type="xsd:string" /> 
+  <element name="impStatus" type="xsd:string" /> 
+  <element name="manStatus" type="xsd:string" /> 
+  <element name="subStatus" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <element name="CStatus_element" type="tns:CStatus" /> 
+  <complexType name="CellInfo">
+  <sequence>
+  <element name="cell_name" type="xsd:string" /> 
+  <element name="cell_type" type="xsd:string" /> 
+  <element name="cell_hostname" type="xsd:string" /> 
+  <element name="port" type="xsd:unsignedInt" /> 
+  <element name="encryption_key" type="xsd:string" /> 
+  <element name="trusted_servers" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ArrayOf_CellInfo">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="CellInfo_element" type="tns:CellInfo" /> 
+  </sequence>
+  </complexType>
+  <element name="CellInfo_Array" type="tns:ArrayOf_CellInfo" /> 
+  <simpleType name="IMMessageType">
+  <restriction base="xsd:string">
+  <enumeration value="MSG_TYPE_NONE" /> 
+  <enumeration value="MSG_TYPE_NEW_EVENT" /> 
+  <enumeration value="MSG_TYPE_MOD_EVENT" /> 
+  <enumeration value="MSG_TYPE_NEW_DATA" /> 
+  <enumeration value="MSG_TYPE_OVERWRITE_DATA" /> 
+  <enumeration value="MSG_TYPE_MOD_DATA" /> 
+  </restriction>
+  </simpleType>
+  <element name="userName" nillable="true" type="xsd:string" /> 
+  <element name="password" nillable="true" type="xsd:string" /> 
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="serverName" nillable="true" type="xsd:string" /> 
+  <element name="regID" nillable="true" type="xsd:string" /> 
+  <element name="messageClass" type="xsd:string" /> 
+  <element name="bufferType" nillable="true" type="tns:IMBufferType" /> 
+  <element name="messageType" nillable="true" type="tns:IMMessageType" /> 
+  <element name="GetEventsResponse_element" nillable="true" type="tns:GetEventsResponse" /> 
+  <element name="RetrieveQueryResultResponse_element" nillable="true" type="tns:RetrieveQueryResultResponse" /> 
+  <element name="connectionId" type="xsd:long" /> 
+  <element name="long_Response" type="xsd:long" /> 
+  <element name="startIndex" type="xsd:long" /> 
+  <element name="startIndex_nio" type="xsd:long" /> 
+  <element name="connection" type="xsd:long" /> 
+  <element name="num_of_events" type="xsd:int" /> 
+  <element name="num_of_results" type="xsd:int" /> 
+  <element name="deleteBuffer" type="xsd:boolean" /> 
+  <element name="reliable" type="xsd:boolean" /> 
+  <element name="message" nillable="true" type="event:Event" /> 
+  <element name="timeout" type="xsd:int" /> 
+  <element name="string_Response" nillable="true" type="xsd:string" /> 
+  <element name="filterName" nillable="true" type="xsd:string" /> 
+  <element name="context" nillable="true" type="xsd:string" /> 
+  <element name="context_nio" nillable="true" type="xsd:string" /> 
+  <element name="context_ack" nillable="true" type="xsd:string" /> 
+  <element name="callbackURL" nillable="true" type="xsd:string" /> 
+  <element name="query" nillable="true" type="xsd:string" /> 
+  <element name="query_ev" nillable="true" type="xsd:string" /> 
+  <element name="messageID" nillable="true" type="xsd:string" /> 
+  <element name="eventID" nillable="true" type="xsd:string" /> 
+  <element name="classNames" nillable="true" type="xsd:string" /> 
+  <element name="resultHandle" nillable="true" type="xsd:string" /> 
+  <element name="retrieveResultHandle" nillable="true" type="xsd:string" /> 
+  <element name="startDate" nillable="true" type="xsd:dateTime" /> 
+  <element name="endDate" nillable="true" type="xsd:dateTime" /> 
+  <element name="securityToken" nillable="true" type="xsd:string" /> 
+  <element name="getSubclasses" type="xsd:boolean" /> 
+  <element name="num_of_components" type="xsd:int" /> 
+  <element name="componentStatusId" nillable="true" type="xsd:string" /> 
+  <element name="setOrCleared" nillable="true" type="xsd:int" /> 
+  <element name="statusSet" nillable="true" type="xsd:int" /> 
+  <element name="comment" nillable="true" type="xsd:string" /> 
+  <element name="errorCode" nillable="true" type="xsd:int" /> 
+  <element name="componentStatus" nillable="true" type="xsd:string" /> 
+  <element name="cStatusLow" nillable="true" type="xsd:string" /> 
+  <element name="cStatusHigh" nillable="true" type="xsd:string" /> 
+  <element name="baseClass" nillable="true" type="xsd:string" /> 
+  <element name="slotsList" nillable="true" type="xsd:string" /> 
+  <element name="condition" nillable="true" type="xsd:string" /> 
+  <element name="componentId" nillable="true" type="xsd:string" /> 
+  <element name="componentCauseId" nillable="true" type="xsd:string" /> 
+  <element name="trueCause" type="xsd:boolean" /> 
+  <element name="onlyImpacted" type="xsd:boolean" /> 
+  <element name="resultCode" type="xsd:int" /> 
+  <element name="className" nillable="true" type="xsd:string" /> 
+  <element name="classOnly" type="xsd:boolean" /> 
+  <element name="modeToSet" nillable="true" type="xsd:string" /> 
+  <element name="imFailure" nillable="true" type="xsd:string" /> 
+  </schema>

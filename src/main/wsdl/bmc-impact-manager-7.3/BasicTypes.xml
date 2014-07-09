@@ -1,0 +1,101 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:btypes="http://blueprint.bmc.com/BasicTypes" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://blueprint.bmc.com/BasicTypes">
+  <element name="ByteArray" type="btypes:ArrayOf_Byte" /> 
+  <complexType name="ArrayOf_Byte">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="byte_element" type="xsd:byte" /> 
+  </sequence>
+  </complexType>
+  <element name="ShortArray" type="btypes:ArrayOf_Short" /> 
+  <complexType name="ArrayOf_Short">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="short_element" type="xsd:short" /> 
+  </sequence>
+  </complexType>
+  <element name="IntArray" type="btypes:ArrayOf_Int" /> 
+  <complexType name="ArrayOf_Int">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="int_element" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  <element name="LongArray" type="btypes:ArrayOf_Long" /> 
+  <complexType name="ArrayOf_Long">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="long_element" type="xsd:long" /> 
+  </sequence>
+  </complexType>
+  <element name="FloatArray" type="btypes:ArrayOf_Float" /> 
+  <complexType name="ArrayOf_Float">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="float_element" type="xsd:float" /> 
+  </sequence>
+  </complexType>
+  <element name="DoubleArray" type="btypes:ArrayOf_Double" /> 
+  <complexType name="ArrayOf_Double">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="double_element" type="xsd:double" /> 
+  </sequence>
+  </complexType>
+  <element name="StringArray" type="btypes:ArrayOf_String" /> 
+  <complexType name="ArrayOf_String">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="string_element" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <simpleType name="DataType">
+  <restriction base="xsd:string">
+  <enumeration value="BYTE" /> 
+  <enumeration value="SHORT" /> 
+  <enumeration value="INT" /> 
+  <enumeration value="LONG" /> 
+  <enumeration value="FLOAT" /> 
+  <enumeration value="DOUBLE" /> 
+  <enumeration value="STRING" /> 
+  <enumeration value="BYTE_ARRAY" /> 
+  <enumeration value="SHORT_ARRAY" /> 
+  <enumeration value="INT_ARRAY" /> 
+  <enumeration value="LONG_ARRAY" /> 
+  <enumeration value="FLOAT_ARRAY" /> 
+  <enumeration value="DOUBLE_ARRAY" /> 
+  <enumeration value="STRING_ARRAY" /> 
+  </restriction>
+  </simpleType>
+  <element name="value_element" type="btypes:value" /> 
+  <complexType name="value">
+  <choice>
+  <element name="byte_value" type="xsd:byte" /> 
+  <element name="short_value" type="xsd:short" /> 
+  <element name="int_value" type="xsd:int" /> 
+  <element name="long_value" type="xsd:long" /> 
+  <element name="float_value" type="xsd:float" /> 
+  <element name="double_value" type="xsd:double" /> 
+  <element name="string_value" type="xsd:string" /> 
+  <element name="ByteArray" type="btypes:ArrayOf_Byte" /> 
+  <element name="ShortArray" type="btypes:ArrayOf_Short" /> 
+  <element name="IntArray" type="btypes:ArrayOf_Int" /> 
+  <element name="LongArray" type="btypes:ArrayOf_Long" /> 
+  <element name="FloatArray" type="btypes:ArrayOf_Float" /> 
+  <element name="DoubleArray" type="btypes:ArrayOf_Double" /> 
+  <element name="StringArray" type="btypes:ArrayOf_String" /> 
+  </choice>
+  </complexType>
+  <element name="NameValue_element" type="btypes:NameValue" /> 
+  <complexType name="NameValue">
+  <sequence>
+  <element name="name" type="xsd:string" /> 
+  <element name="value" type="btypes:value" /> 
+  <element minOccurs="0" name="value_type" type="btypes:DataType" /> 
+  </sequence>
+  </complexType>
+  <element name="NameValueArray_element" type="btypes:ArrayOf_NameValue" /> 
+  <complexType name="ArrayOf_NameValue">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="NameValue_element" type="btypes:NameValue" /> 
+  </sequence>
+  </complexType>
+  <element name="NameValueTable_element" type="btypes:TableOf_NameValue" /> 
+  <complexType name="TableOf_NameValue">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="NameValueArray_element" type="btypes:ArrayOf_NameValue" /> 
+  </sequence>
+  </complexType>
+  </schema>

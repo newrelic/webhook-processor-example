@@ -1,0 +1,365 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:btypes="http://blueprint.bmc.com/BasicTypes"
+        xmlns:event="http://blueprint.bmc.com/Event"
+        xmlns:types="http://blueprint.bmc.com/ImapiTypes" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        attributeFormDefault="unqualified" elementFormDefault="qualified"
+        targetNamespace="http://blueprint.bmc.com/ImapiElems">
+  <import namespace="http://blueprint.bmc.com/BasicTypes" schemaLocation="BasicTypes.xml" /> 
+  <import namespace="http://blueprint.bmc.com/Event" schemaLocation="Event.xml" /> 
+  <import namespace="http://blueprint.bmc.com/ImapiTypes" schemaLocation="ImapiTypes.xml" /> 
+  <element name="NoValue_output">
+  <complexType>
+  <sequence /> 
+  </complexType>
+  </element>
+  <element name="QueryResultHandle_output">
+  <complexType>
+  <sequence>
+  <element name="resultHandle" nillable="true" type="xsd:string" /> 
+  <element name="resultCount" type="xsd:long" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="execution_fault">
+  <complexType>
+  <sequence>
+  <element name="IMFailure" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="Connect">
+  <complexType>
+  <sequence>
+  <element name="userName" nillable="true" type="xsd:string" /> 
+  <element name="password" nillable="true" type="xsd:string" /> 
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="bufferType" nillable="true" type="types:IMBufferType" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="Connect_output">
+  <complexType>
+  <sequence>
+  <element name="connectionId" type="xsd:long" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="Disconnect">
+  <complexType>
+  <sequence>
+  <element name="connection" type="xsd:long" /> 
+  <element name="deleteBuffer" type="xsd:boolean" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="SendEvent">
+  <complexType>
+  <sequence>
+  <element name="connection" type="xsd:long" /> 
+  <element name="message" nillable="true" type="event:Event" /> 
+  <element name="timeout" type="xsd:int" /> 
+  <element name="messageClass" type="xsd:string" /> 
+  <element name="messageType" nillable="true" type="types:IMMessageType" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="SendEvent_output">
+  <complexType>
+  <sequence>
+  <element name="response" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="Subscribe">
+  <complexType>
+  <sequence>
+  <element name="filterName" nillable="true" type="xsd:string" /> 
+  <element name="context" nillable="true" type="xsd:string" /> 
+  <element name="callbackURL" nillable="true" type="xsd:string" /> 
+  <element name="reliable" type="xsd:boolean" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="Unsubscribe">
+  <complexType>
+  <sequence>
+  <element name="filterName" nillable="true" type="xsd:string" /> 
+  <element name="context" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="GetCellInfo">
+  <complexType>
+  <sequence /> 
+  </complexType>
+  </element>
+  <element name="GetCellInfo_output">
+  <complexType>
+  <sequence>
+  <element name="CellInfo_Array" type="types:ArrayOf_CellInfo" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="GetFilterNames">
+  <complexType>
+  <sequence /> 
+  </complexType>
+  </element>
+  <element name="GetFilterNames_output">
+  <complexType>
+  <sequence>
+  <element name="StringArray" type="btypes:ArrayOf_String" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="GetEvents">
+  <complexType>
+  <sequence>
+  <element name="filterName" nillable="true" type="xsd:string" /> 
+  <element name="context_nio" nillable="true" type="xsd:string" /> 
+  <element name="num_of_events" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="GetEvents_output">
+  <complexType>
+  <sequence>
+  <element name="getEventsResponse" nillable="true" type="types:GetEventsResponse" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="AckEvents">
+  <complexType>
+  <sequence>
+  <element name="filterName" nillable="true" type="xsd:string" /> 
+  <element name="context_nio" nillable="true" type="xsd:string" /> 
+  <element name="num_of_events" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryEvents">
+  <complexType>
+  <sequence>
+  <element name="query" nillable="true" type="xsd:string" /> 
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryData">
+  <complexType>
+  <sequence>
+  <element name="query" nillable="true" type="xsd:string" /> 
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryEventByID">
+  <complexType>
+  <sequence>
+  <element name="eventId" nillable="true" type="xsd:string" /> 
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryEventsByDate">
+  <complexType>
+  <sequence>
+  <element name="startDate" nillable="true" type="xsd:dateTime" /> 
+  <element name="endDate" nillable="true" type="xsd:dateTime" /> 
+  <element name="classNames" nillable="true" type="xsd:string" /> 
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="slotsList" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="EndQuery">
+  <complexType>
+  <sequence>
+  <element name="resultHandle" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="GetQueryResultCount">
+  <complexType>
+  <sequence>
+  <element name="resultHandle" nillable="true" type="xsd:string" /> 
+  <element name="timeout" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="GetQueryResultCount_output">
+  <complexType>
+  <sequence>
+  <element name="resultCount" type="xsd:long" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="RetrieveQueryResults">
+  <complexType>
+  <sequence>
+  <element name="retrieveResultHandle" nillable="true" type="xsd:string" /> 
+  <element name="startIndex" type="xsd:long" /> 
+  <element name="timeout" type="xsd:int" /> 
+  <element name="num_of_events" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="RetrieveQueryResults_output">
+  <complexType>
+  <sequence>
+  <element name="results" type="btypes:TableOf_NameValue" /> 
+  <element name="num_of_events" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryComponentsByStatus">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="lStatus" nillable="true" type="xsd:string" /> 
+  <element name="hStatus" nillable="true" type="xsd:string" /> 
+  <element name="baseClass" nillable="true" type="xsd:string" /> 
+  <element name="getSubclasses" type="xsd:boolean" /> 
+  <element name="slotsList" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="SetMaintenanceMode">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="componentId" nillable="true" type="xsd:string" /> 
+  <element name="setOrCleared" nillable="true" type="xsd:int" /> 
+  <element name="modeToSet" nillable="true" type="xsd:string" /> 
+  <element name="comment" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="SetMaintenanceMode_output">
+  <complexType>
+  <sequence>
+  <element name="errorCode" nillable="true" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="SetManualStatus">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="componentId" nillable="true" type="xsd:string" /> 
+  <element name="statusSet" nillable="true" type="xsd:int" /> 
+  <element name="componentStatus" nillable="true" type="xsd:string" /> 
+  <element name="comment" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="SetManualStatus_output">
+  <complexType>
+  <sequence>
+  <element name="errorCode" nillable="true" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryComponentsByCondition">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="condition" nillable="true" type="xsd:string" /> 
+  <element name="slotsList" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryComponentStatus">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="componentId" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryComponent">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="componentId" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryModelImpact">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="componentId" nillable="true" type="xsd:string" /> 
+  <element name="slotsList" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryModelPossibleRootCauses">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="componentId" nillable="true" type="xsd:string" /> 
+  <element name="slotsList" nillable="true" type="xsd:string" /> 
+  <element name="trueCause" type="xsd:boolean" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryClassDefinitions">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="queryMode" type="types:QueryMode" /> 
+  <element name="baseClass" nillable="true" type="xsd:string" /> 
+  <element name="className" nillable="true" type="xsd:string" /> 
+  <element name="classOnly" type="xsd:boolean" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryClassDefinitions_output">
+  <complexType>
+  <sequence>
+  <element name="classDefs" type="types:ArrayOf_ClassDefInfo" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="RegisterStateChange">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="serverName" nillable="true" type="xsd:string" /> 
+  <element name="changeType" type="types:StateChangeType" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="RegisterStateChange_output">
+  <complexType>
+  <sequence>
+  <element name="registrationID" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="QueryComponentEvents">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="componentId" nillable="true" type="xsd:string" /> 
+  <element name="slotsList" nillable="true" type="xsd:string" /> 
+  <element name="onlyImpacted" type="xsd:boolean" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="UnregisterStateChange">
+  <complexType>
+  <sequence>
+  <element name="imname" nillable="true" type="xsd:string" /> 
+  <element name="registrationID" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </element>
+  <element name="UnregisterStateChange_output">
+  <complexType>
+  <sequence>
+  <element name="resultCode" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  </element>
+  </schema>

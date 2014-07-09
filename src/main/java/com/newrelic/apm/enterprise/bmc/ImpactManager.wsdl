@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions name="ImpactManager" targetNamespace="http://imapi.bmc.com/2010/01"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://imapi.bmc.com/2010/01"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:elems="http://blueprint.bmc.com/ImapiElems">
+  <wsdl:types>
+  <xsd:schema targetNamespace="http://imapi.bmc.com/2010/01">
+  <xsd:import namespace="http://blueprint.bmc.com/BasicTypes" schemaLocation="BasicTypes.xml" /> 
+  <xsd:import namespace="http://blueprint.bmc.com/Event" schemaLocation="Event.xml" /> 
+  <xsd:import namespace="http://blueprint.bmc.com/ImapiTypes" schemaLocation="ImapiTypes.xml" /> 
+  <xsd:import namespace="http://blueprint.bmc.com/ImapiElems" schemaLocation="ImapiElems.xml" /> 
+  </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCellInfo_Response">
+  <wsdl:part name="outargs" element="elems:GetCellInfo_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryComponentsByCondition_Request">
+  <wsdl:part name="inargs" element="elems:QueryComponentsByCondition" /> 
+  </wsdl:message>
+  <wsdl:message name="RegisterStateChange_Request">
+  <wsdl:part name="inargs" element="elems:RegisterStateChange" /> 
+  </wsdl:message>
+  <wsdl:message name="EndQuery_Request">
+  <wsdl:part name="inargs" element="elems:EndQuery" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryComponentEvents_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="Disconnect_Request">
+  <wsdl:part name="inargs" element="elems:Disconnect" /> 
+  </wsdl:message>
+  <wsdl:message name="UnregisterStateChange_Request">
+  <wsdl:part name="inargs" element="elems:UnregisterStateChange" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryData_Request">
+  <wsdl:part name="inargs" element="elems:QueryData" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryModelImpact_Request">
+  <wsdl:part name="inargs" element="elems:QueryModelImpact" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryComponentsByStatus_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="Subscribe_Response">
+  <wsdl:part name="outargs" element="elems:NoValue_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryComponentStatus_Request">
+  <wsdl:part name="inargs" element="elems:QueryComponentStatus" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryClassDefinitions_Response">
+  <wsdl:part name="outargs" element="elems:QueryClassDefinitions_output" /> 
+  </wsdl:message>
+  <wsdl:message name="Subscribe_Request">
+  <wsdl:part name="inargs" element="elems:Subscribe" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryModelImpact_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryModelPossibleRootCauses_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryEventsByDate_Request">
+  <wsdl:part name="inargs" element="elems:QueryEventsByDate" /> 
+  </wsdl:message>
+  <wsdl:message name="AckEvents_Request">
+  <wsdl:part name="inargs" element="elems:AckEvents" /> 
+  </wsdl:message>
+  <wsdl:message name="RetrieveQueryResults_Response">
+  <wsdl:part name="outargs" element="elems:RetrieveQueryResults_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryEventByID_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryEvents_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="GetEvents_Response">
+  <wsdl:part name="outargs" element="elems:GetEvents_output" /> 
+  </wsdl:message>
+  <wsdl:message name="GetQueryResultCount_Request">
+  <wsdl:part name="inargs" element="elems:GetQueryResultCount" /> 
+  </wsdl:message>
+  <wsdl:message name="Connect_Request">
+  <wsdl:part name="inargs" element="elems:Connect" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryEvents_Request">
+  <wsdl:part name="inargs" element="elems:QueryEvents" /> 
+  </wsdl:message>
+  <wsdl:message name="SetManualStatus_Response">
+  <wsdl:part name="outargs" element="elems:SetManualStatus_output" /> 
+  </wsdl:message>
+  <wsdl:message name="GetCellInfo_Request">
+  <wsdl:part name="inargs" element="elems:GetCellInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="GetEvents_Request">
+  <wsdl:part name="inargs" element="elems:GetEvents" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryComponentStatus_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryComponentsByStatus_Request">
+  <wsdl:part name="inargs" element="elems:QueryComponentsByStatus" /> 
+  </wsdl:message>
+  <wsdl:message name="SendEvent_Request">
+  <wsdl:part name="inargs" element="elems:SendEvent" /> 
+  </wsdl:message>
+  <wsdl:message name="Unsubscribe_Response">
+  <wsdl:part name="outargs" element="elems:NoValue_output" /> 
+  </wsdl:message>
+  <wsdl:message name="GetFilterNames_Request">
+  <wsdl:part name="inargs" element="elems:GetFilterNames" /> 
+  </wsdl:message>
+  <wsdl:message name="Disconnect_Response">
+  <wsdl:part name="outargs" element="elems:NoValue_output" /> 
+  </wsdl:message>
+  <wsdl:message name="EndQuery_Response">
+  <wsdl:part name="outargs" element="elems:NoValue_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryData_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="RetrieveQueryResults_Request">
+  <wsdl:part name="inargs" element="elems:RetrieveQueryResults" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryComponent_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="Execution_Fault">
+  <wsdl:part name="errargs" element="elems:execution_fault" /> 
+  </wsdl:message>
+  <wsdl:message name="Connect_Response">
+  <wsdl:part name="outargs" element="elems:Connect_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryEventsByDate_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="GetQueryResultCount_Response">
+  <wsdl:part name="outargs" element="elems:GetQueryResultCount_output" /> 
+  </wsdl:message>
+  <wsdl:message name="AckEvents_Response">
+  <wsdl:part name="outargs" element="elems:NoValue_output" /> 
+  </wsdl:message>
+  <wsdl:message name="UnregisterStateChange_Response">
+  <wsdl:part name="outargs" element="elems:UnregisterStateChange_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryComponent_Request">
+  <wsdl:part name="inargs" element="elems:QueryComponent" /> 
+  </wsdl:message>
+  <wsdl:message name="Unsubscribe_Request">
+  <wsdl:part name="inargs" element="elems:Unsubscribe" /> 
+  </wsdl:message>
+  <wsdl:message name="SetMaintenanceMode_Request">
+  <wsdl:part name="inargs" element="elems:SetMaintenanceMode" /> 
+  </wsdl:message>
+  <wsdl:message name="SetManualStatus_Request">
+  <wsdl:part name="inargs" element="elems:SetManualStatus" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryComponentEvents_Request">
+  <wsdl:part name="inargs" element="elems:QueryComponentEvents" /> 
+  </wsdl:message>
+  <wsdl:message name="SendEvent_Response">
+  <wsdl:part name="outargs" element="elems:SendEvent_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryComponentsByCondition_Response">
+  <wsdl:part name="outargs" element="elems:QueryResultHandle_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryModelPossibleRootCauses_Request">
+  <wsdl:part name="inargs" element="elems:QueryModelPossibleRootCauses" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryClassDefinitions_Request">
+  <wsdl:part name="inargs" element="elems:QueryClassDefinitions" /> 
+  </wsdl:message>
+  <wsdl:message name="GetFilterNames_Response">
+  <wsdl:part name="outargs" element="elems:GetFilterNames_output" /> 
+  </wsdl:message>
+  <wsdl:message name="QueryEventByID_Request">
+  <wsdl:part name="inargs" element="elems:QueryEventByID" /> 
+  </wsdl:message>
+  <wsdl:message name="RegisterStateChange_Response">
+  <wsdl:part name="outargs" element="elems:RegisterStateChange_output" /> 
+  </wsdl:message>
+  <wsdl:message name="SetMaintenanceMode_Response">
+  <wsdl:part name="outargs" element="elems:SetMaintenanceMode_output" /> 
+  </wsdl:message>
+  <wsdl:portType name="ImpactManager">
+  <wsdl:operation name="Connect" parameterOrder="inargs">
+  <wsdl:input message="tns:Connect_Request" /> 
+  <wsdl:output message="tns:Connect_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="Disconnect" parameterOrder="inargs">
+  <wsdl:input message="tns:Disconnect_Request" /> 
+  <wsdl:output message="tns:Disconnect_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="SendEvent" parameterOrder="inargs">
+  <wsdl:input message="tns:SendEvent_Request" /> 
+  <wsdl:output message="tns:SendEvent_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="Subscribe" parameterOrder="inargs">
+  <wsdl:input message="tns:Subscribe_Request" /> 
+  <wsdl:output message="tns:Subscribe_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="Unsubscribe" parameterOrder="inargs">
+  <wsdl:input message="tns:Unsubscribe_Request" /> 
+  <wsdl:output message="tns:Unsubscribe_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="GetCellInfo" parameterOrder="inargs">
+  <wsdl:input message="tns:GetCellInfo_Request" /> 
+  <wsdl:output message="tns:GetCellInfo_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="GetFilterNames" parameterOrder="inargs">
+  <wsdl:input message="tns:GetFilterNames_Request" /> 
+  <wsdl:output message="tns:GetFilterNames_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="GetEvents" parameterOrder="inargs">
+  <wsdl:input message="tns:GetEvents_Request" /> 
+  <wsdl:output message="tns:GetEvents_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="AckEvents" parameterOrder="inargs">
+  <wsdl:input message="tns:AckEvents_Request" /> 
+  <wsdl:output message="tns:AckEvents_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryEvents" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryEvents_Request" /> 
+  <wsdl:output message="tns:QueryEvents_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryData" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryData_Request" /> 
+  <wsdl:output message="tns:QueryData_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryEventByID" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryEventByID_Request" /> 
+  <wsdl:output message="tns:QueryEventByID_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryEventsByDate" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryEventsByDate_Request" /> 
+  <wsdl:output message="tns:QueryEventsByDate_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="EndQuery" parameterOrder="inargs">
+  <wsdl:input message="tns:EndQuery_Request" /> 
+  <wsdl:output message="tns:EndQuery_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="GetQueryResultCount" parameterOrder="inargs">
+  <wsdl:input message="tns:GetQueryResultCount_Request" /> 
+  <wsdl:output message="tns:GetQueryResultCount_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="RetrieveQueryResults" parameterOrder="inargs">
+  <wsdl:input message="tns:RetrieveQueryResults_Request" /> 
+  <wsdl:output message="tns:RetrieveQueryResults_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryComponentsByStatus" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryComponentsByStatus_Request" /> 
+  <wsdl:output message="tns:QueryComponentsByStatus_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="SetMaintenanceMode" parameterOrder="inargs">
+  <wsdl:input message="tns:SetMaintenanceMode_Request" /> 
+  <wsdl:output message="tns:SetMaintenanceMode_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="SetManualStatus" parameterOrder="inargs">
+  <wsdl:input message="tns:SetManualStatus_Request" /> 
+  <wsdl:output message="tns:SetManualStatus_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryComponentsByCondition" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryComponentsByCondition_Request" /> 
+  <wsdl:output message="tns:QueryComponentsByCondition_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryComponentStatus" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryComponentStatus_Request" /> 
+  <wsdl:output message="tns:QueryComponentStatus_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryComponent" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryComponent_Request" /> 
+  <wsdl:output message="tns:QueryComponent_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryModelImpact" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryModelImpact_Request" /> 
+  <wsdl:output message="tns:QueryModelImpact_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryModelPossibleRootCauses" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryModelPossibleRootCauses_Request" /> 
+  <wsdl:output message="tns:QueryModelPossibleRootCauses_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryClassDefinitions" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryClassDefinitions_Request" /> 
+  <wsdl:output message="tns:QueryClassDefinitions_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="RegisterStateChange" parameterOrder="inargs">
+  <wsdl:input message="tns:RegisterStateChange_Request" /> 
+  <wsdl:output message="tns:RegisterStateChange_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="QueryComponentEvents" parameterOrder="inargs">
+  <wsdl:input message="tns:QueryComponentEvents_Request" /> 
+  <wsdl:output message="tns:QueryComponentEvents_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  <wsdl:operation name="UnregisterStateChange" parameterOrder="inargs">
+  <wsdl:input message="tns:UnregisterStateChange_Request" /> 
+  <wsdl:output message="tns:UnregisterStateChange_Response" /> 
+  <wsdl:fault name="Execution_Fault" message="tns:Execution_Fault" /> 
+  </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ImpactManager" type="tns:ImpactManager">
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" /> 
+  <wsdl:operation name="Connect">
+  <soap:operation soapAction="Connect" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="Disconnect">
+  <soap:operation soapAction="Disconnect" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="SendEvent">
+  <soap:operation soapAction="SendEvent" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="Subscribe">
+  <soap:operation soapAction="Subscribe" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="Unsubscribe">
+  <soap:operation soapAction="Unsubscribe" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="GetCellInfo">
+  <soap:operation soapAction="GetCellInfo" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="GetFilterNames">
+  <soap:operation soapAction="GetFilterNames" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="GetEvents">
+  <soap:operation soapAction="GetEvents" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="AckEvents">
+  <soap:operation soapAction="AckEvents" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryEvents">
+  <soap:operation soapAction="QueryEvents" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryData">
+  <soap:operation soapAction="QueryData" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryEventByID">
+  <soap:operation soapAction="QueryEventByID" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryEventsByDate">
+  <soap:operation soapAction="QueryEventsByDate" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="EndQuery">
+  <soap:operation soapAction="EndQuery" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="GetQueryResultCount">
+  <soap:operation soapAction="GetQueryResultCount" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryComponentsByStatus">
+  <soap:operation soapAction="QueryComponentsByStatus" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="SetMaintenanceMode">
+  <soap:operation soapAction="SetMaintenanceMode" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="SetManualStatus">
+  <soap:operation soapAction="SetManualStatus" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryComponentsByCondition">
+  <soap:operation soapAction="QueryComponentsByCondition" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryComponentStatus">
+  <soap:operation soapAction="QueryComponentStatus" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryComponent">
+  <soap:operation soapAction="QueryComponent" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryModelImpact">
+  <soap:operation soapAction="QueryModelImpact" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryModelPossibleRootCauses">
+  <soap:operation soapAction="QueryModelPossibleRootCauses" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="RetrieveQueryResults">
+  <soap:operation soapAction="RetrieveQueryResults" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryClassDefinitions">
+  <soap:operation soapAction="QueryClassDefinitions" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="RegisterStateChange">
+  <soap:operation soapAction="RegisterStateChange" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="UnregisterStateChange">
+  <soap:operation soapAction="UnregisterStateChange" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  <wsdl:operation name="QueryComponentEvents">
+  <soap:operation soapAction="QueryComponentEvents" style="document" /> 
+  <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+  <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  <wsdl:fault name="Execution_Fault">
+  <soap:fault name="Execution_Fault" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  </wsdl:fault>
+  </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ImpactManager">
+  <wsdl:port name="ImpactManager" binding="tns:ImpactManager">
+  <soap:address location="http://example.com:9080/imws/services/ImpactManager/" />
+  </wsdl:port>
+  </wsdl:service>
+  </wsdl:definitions>

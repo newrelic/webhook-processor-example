@@ -1,0 +1,19 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:btypes="http://blueprint.bmc.com/BasicTypes" xmlns:event="http://blueprint.bmc.com/Event" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://blueprint.bmc.com/Event">
+  <import namespace="http://blueprint.bmc.com/BasicTypes" schemaLocation="BasicTypes.xml" /> 
+  <element name="Event_element" type="event:Event" /> 
+  <complexType name="Event">
+  <complexContent>
+  <extension base="btypes:ArrayOf_NameValue">
+  <sequence>
+  <element name="subject" type="xsd:string" /> 
+  </sequence>
+  </extension>
+  </complexContent>
+  </complexType>
+  <element name="EventArray_element" type="event:ArrayOf_Event" /> 
+  <complexType name="ArrayOf_Event">
+  <sequence>
+  <element maxOccurs="unbounded" minOccurs="0" name="Event_element" type="event:Event" /> 
+  </sequence>
+  </complexType>
+  </schema>

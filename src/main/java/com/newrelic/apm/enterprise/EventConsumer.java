@@ -2,6 +2,8 @@ package com.newrelic.apm.enterprise;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import com.newrelic.apm.enterprise.bmc.ImpactManager;
+import com.newrelic.apm.enterprise.bmc.ImpactManager_Service;
 import com.newrelic.apm.enterprise.http.HttpClient;
 import com.newrelic.apm.enterprise.log.Log;
 import io.iron.ironmq.Message;
@@ -19,6 +21,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Map;
 
 public class EventConsumer implements Runnable {
     private static final Log LOG = new Log();
@@ -30,14 +34,20 @@ public class EventConsumer implements Runnable {
     private int timeout;
     private File root;
     private String updateKey;
+    private Map<String, String> config;
     private final ScriptEngineManager scriptEngineManager;
 
     @Inject
-    public EventConsumer(Queue queue, @Named("ironmq.timeout") int timeout, @Named("root") File root, @Named("remote.scriptUpdateKey") String updateKey) {
+    public EventConsumer(Queue queue,
+                         @Named("ironmq.timeout") int timeout,
+                         @Named("root") File root,
+                         @Named("remote.scriptUpdateKey") String updateKey,
+                         @Named("config") Map<String, String> config) {
         this.queue = queue;
         this.timeout = timeout;
         this.root = root;
         this.updateKey = updateKey;
+        this.config = config;
         scriptEngineManager = new ScriptEngineManager();
         httpClient = HttpClientBuilder.create().build();
     }
@@ -114,6 +124,16 @@ public class EventConsumer implements Runnable {
         engine.put("console", new Console(log));
         engine.put("utils", new Utils());
         engine.put("http", new HttpClient(httpClient, engine));
+        engine.put("config", config);
+
+        if (config.containsKey("bmc.wsdl")) {
+            // todo: this probably should be a singleton/cached, but then again I guess most of the stuff above should too!
+            String wsdl = config.get("bmc.wsdl");
+            ImpactManager_Service impactManagerService = new ImpactManager_Service(new URL(wsdl));
+            ImpactManager impactManager = impactManagerService.getImpactManager();
+            engine.put("impactManager", impactManager);
+        }
+
         engine.eval(new FileReader(new File(root, "script.js")));
     }
 }

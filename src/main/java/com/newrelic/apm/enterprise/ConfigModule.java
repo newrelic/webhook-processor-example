@@ -11,12 +11,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ConfigModule extends AbstractModule {
     private static final Log LOG = new Log();
 
     private File root;
+    private Map<String, String> config = new ConcurrentHashMap<>();
 
     @Override
     protected void configure() {
@@ -51,7 +54,21 @@ public class ConfigModule extends AbstractModule {
             Log.setUpLoggly(logglyUrl);
         }
 
+        for (Map.Entry<Object, Object> entry : props.entrySet()) {
+            String key = (String) entry.getKey();
+            if (!key.startsWith("ironmq.") && !key.startsWith("remote.")) {
+                this.config.put(key, (String) entry.getValue());
+            }
+        }
+
         Names.bindProperties(binder(), props);
+    }
+
+    @Provides
+    @Singleton
+    @Named("config")
+    public Map<String, String> getConfig() {
+        return config;
     }
 
     @Provides
