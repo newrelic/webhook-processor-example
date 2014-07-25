@@ -15,6 +15,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException, ScriptException {
@@ -22,7 +23,8 @@ public class Main {
         Log.wireUp();
 
         // set up Guice
-        Injector injector = Guice.createInjector(new ConfigModule(), new EnterpriseAgentModule());
+        ConfigModule configModule = new ConfigModule();
+        Injector injector = Guice.createInjector(configModule, new EnterpriseAgentModule());
 
         if (args.length > 0) {
             Queue queue = injector.getInstance(Queue.class);
@@ -41,8 +43,23 @@ public class Main {
             }
         }
 
+        // bring over HTTP/S proxy stuff
+        Map<String, String> config = configModule.getConfig();
+
+        copyToSystemProperty(config, "http.proxyHost");
+        copyToSystemProperty(config, "http.proxyPort");
+        copyToSystemProperty(config, "http.nonProxyHosts");
+        copyToSystemProperty(config, "https.proxyHost");
+        copyToSystemProperty(config, "https.proxyPort");
+
         // start the consumer
         EventConsumer consumer = injector.getInstance(EventConsumer.class);
         consumer.start();
+    }
+
+    private static void copyToSystemProperty(Map<String, String> config, String key) {
+        if (config.containsKey(key)) {
+            System.setProperty(key, config.get(key));
+        }
     }
 }
