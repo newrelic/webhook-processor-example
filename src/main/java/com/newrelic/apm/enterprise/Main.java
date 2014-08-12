@@ -10,6 +10,8 @@ import io.iron.ironmq.Queue;
 import javax.script.ScriptException;
 import java.io.File;
 import java.io.IOException;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -48,9 +50,25 @@ public class Main {
 
         copyToSystemProperty(config, "http.proxyHost");
         copyToSystemProperty(config, "http.proxyPort");
+        copyToSystemProperty(config, "http.proxyUser");
+        copyToSystemProperty(config, "http.proxyPassword");
         copyToSystemProperty(config, "http.nonProxyHosts");
         copyToSystemProperty(config, "https.proxyHost");
         copyToSystemProperty(config, "https.proxyPort");
+        copyToSystemProperty(config, "https.proxyUser");
+        copyToSystemProperty(config, "https.proxyPassword");
+
+        if (config.containsKey("http.proxyUser")) {
+            final String user = config.get("http.proxyUser");
+            final String password = config.get("http.proxyPassword");
+            Authenticator.setDefault(
+                    new Authenticator() {
+                        public PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(user, password.toCharArray());
+                        }
+                    }
+            );
+        }
 
         // start the consumer
         EventConsumer consumer = injector.getInstance(EventConsumer.class);
